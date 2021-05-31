@@ -1,10 +1,15 @@
 body{
 
-   background: linear-gradient(to right,rgb(230, 193, 28),rgb(155, 66, 66));
+   background: #E4E9F7;
     height: 100%;
     display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+
+body[id="gestion"]{
+    background-image: url(/assets/img/aaron-burden-QJDzYT_K8Xg-unsplash.jpg);
 }
 
 @font-face {
@@ -60,11 +65,64 @@ body{
       padding-top:5%;
       justify-content: right;
       opacity: 89%;
-
-          
-      
-
   }
+
+
+  .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+
+#validador-ok{
+    color:green;
+    font-size:2vh;
+}
+
+#validador-false{
+    color:red;
+    font-size:3vh;
+}
+
+.validador-falso{
+    color:red;
+    font-size:2vh;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+#imagen404{
+    background: red;
+    height:20vh;
+    width:20vh;
+    padding:10px;
+    transition: 0.5s;
+}
+#imagen404:hover{
+    background:coral;
+}
+
+#error404{
+    color:crimson;
+    text-align:center;
+    transition: 0.5s;
+
+}
+#error404:hover{
+    color:coral;
+}
 
 .main{
     flex:1;
@@ -106,10 +164,7 @@ body{
 
   
 
-#moduloGestion{
 
-    
-} 
 #libro-a{
     border-radius:20px;
     font-family:Arial, Helvetica, sans-serif;
@@ -190,9 +245,37 @@ body{
     padding-left: 45%;
     
 }
+
+.grupobotones .botoncito{
+    background:linear-gradient(rgb(226, 12, 12),rgb(226, 137, 36)); 
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    font-size:30px;
+}
+.grupobotones .botoncito:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+  
+  .grupobotones .botoncito:hover {
+    background: rgb(223, 164, 140);
+  }
+
+#div-gestion{
+    border-radius:20px; 
+    background-color: white;
+}
 #logo{
-    width: 175px;
-    height: 75px;
+    margin:10px;
+    width: 200px;
+    height: 50px;
 }
 
 #titulo-cards{

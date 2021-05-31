@@ -1,10 +1,13 @@
 package com.egglibrary.spring.entity;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,12 +22,33 @@ public class Prestamo {
     private Date fecha;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date devolucion;
+
+    private boolean devuelto=false;
+    private Double multa=0.0;
+
+    
     
     //Relaciones
-    @ManyToOne
-    private Libro libro;
+    @ManyToMany
+    private List<Libro> libro;
     @ManyToOne
     private Cliente cliente;
+
+    public List<Libro> getLibro() {
+        return libro;
+    }
+
+    public void setLibro(List<Libro> libro) {
+        this.libro = libro;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
 
     public String getId() {
@@ -51,7 +75,23 @@ public class Prestamo {
         this.devolucion = devolucion;
     }
     
-    
-    public Prestamo() {
+     public Double getMulta() {
+        return multa;
     }
+
+    public void setMulta(Double multa) {
+        this.multa = multa;
+    }
+    
+    public boolean isDevuelto() {
+        return devuelto;
+    }
+
+    public void setDevuelto(boolean devuelto) {
+        this.devuelto = devuelto;
+    }
+    
+    
+    
+    
 }

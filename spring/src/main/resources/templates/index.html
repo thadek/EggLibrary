@@ -12,53 +12,12 @@
     <!--CSS del slider de libros-->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
-    <title>Libreria Egg</title>
+    <title>gnLibrary</title>
   </head>
   <body>
 
-    <!--Barra de Navegación-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light m-3 p-1 sticky-top" id="navbar-1">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">          
-            <img src="assets/img/logo.png" alt="logo" id="logo"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto" >
-              <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>             
-              <a class="nav-link" th:href="login">Servicios</a>
-              <a class="nav-link" th:href="login">Sucursales</a>
-              <a class="nav-link" th:href="login">Buscar</a>
-
-              
-            </div>
-
-            <!-- Botoncito Cuenta -->
-            <div class="navbar navbar-nav ms-auto dropstart">
-              <a class="nav-link" th:href="@{/gestion}"><button class="btn btn-outline-warning"><i class="bi-file-check"></i> Gestionar</button></a>
-              <button class="btn btn-outline-warning" id="sesion" data-bs-toggle="dropdown"><i class="bi-person"
-                  aria-label="CuentaEgg"></i> Cuenta Egg </button> 
-              <div class="dropdown-menu dropleft" id="login-desp"> 
-                <div class="container p-3 m-3 "><h2>Cuenta Egg</h2> </div>
-                <form class="form-horizontal" method="post" accept-charset="UTF-8"></form>
-                <input class="form-control login" type="text" name="username" placeholder="Usuario"><br>
-                <input class="form-control login" type="password" name="password" placeholder="Password"><br>
-                <input class="btn btn-primary" type="button" value="Login" onclick=login();>
-                </form>
-              </div>
-            
-            </div>
-            
-            
-            
-            
-            
-            
-
-          </div>
-        </div>
-      </nav>
+  <!--Barra de Navegación importada desde navbar.html-->
+  <nav th:replace="navbar :: navbar"></nav>
 
       
 <section id="contenido">
@@ -262,45 +221,8 @@
 
 </section>
 
-        <!--Barra footer-->
-        <footer class="bg-dark text-center text-white">
-          <!-- Grid container -->
-          <div class="container p-4 pb-0">
-            <!-- Redes sociales -->
-            <section class="mb-4">
-              <!-- Facebook -->
-              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                ><i class="bi bi-facebook"></i
-              ></a>
-        
-              <!-- Twitter -->
-              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                ><i class="bi bi-twitter"></i
-              ></a>
-        
-              <!-- Google -->
-              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                ><i class="bi bi-google"></i
-              ></a>
-        
-              <!-- Instagram -->
-              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                ><i class="bi bi-instagram"></i
-              ></a>
-        
-        
-             
-            </section>
-            <!-- Section: Social media -->
-          </div>
-          <!-- Grid container -->
-        
-          <!-- Copyright -->
-          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2021 Egg Library
-          </div>
-          <!-- Copyright -->
-        </footer>
+  <!--Footer -->
+  <footer th:replace="navbar :: footer"></footer>
       
         
           

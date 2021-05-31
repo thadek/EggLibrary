@@ -12,164 +12,22 @@
      
     <title>Gestión - Libreria Egg</title>
   </head>
-  <body style="background-image: url(/assets/img/aaron-burden-QJDzYT_K8Xg-unsplash.jpg);">
-
-
-    <!--Barra de Navegación-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light m-3 p-1 " id="navbar-1">
-        <div class="container-fluid">
-          <a class="navbar-brand" th:href="@{/}">          
-            <img src="../../assets/img/logo.png" alt="logo" id="logo"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto" >
-              <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
-              
-              <a class="nav-link" th:href="login">Servicios</a>
-              <a class="nav-link" th:href="login">Sucursales</a>
-              <a class="nav-link" th:href="login">Buscar</a>
-              
-            </div>
-
-            <!-- Botoncito Cuenta -->
-            <div class="navbar navbar-nav ms-auto dropstart">
-              <a class="nav-link" th:href="@{/gestion}"><button class="btn btn-outline-warning"><i class="bi-file-check"></i> Gestionar</button></a>
-              <button class="btn btn-outline-warning" id="sesion" data-bs-toggle="dropdown"><i class="bi-person"
-                  aria-label="CuentaEgg"></i> Cuenta Egg </button> 
-              <div class="dropdown-menu dropleft" id="login-desp"> 
-                <div class="container p-3 m-3 "><h2>Cuenta Egg</h2> </div>
-                <form class="form-horizontal" method="post" accept-charset="UTF-8"></form>
-                <input class="form-control login" type="text" name="username" placeholder="Usuario"><br>
-                <input class="form-control login" type="password" name="password" placeholder="Password"><br>
-                <input class="btn btn-primary" type="button" value="Login" onclick=login();>
-                </form>
-              </div>
-            
-            </div>
-            
-            
-            
-            
-            
-            
-
-          </div>
-        </div>
-      </nav>
-
+  <body id="gestion">
+    <!--Barra de Navegación importada desde navbar.html-->
+    <nav th:replace="navbar :: navbar"></nav>
 
       <div class='main'>
-      
-      
-      
-       
-      
+
         <div class="row m-3">
 
-          <div class="col-1 col-sm-4" style="border-radius:20px; background-color: white;">
-            <h1 style="text-align:left; margin-top:1vh; color:rgb(9, 93, 250); font-family: ViceCitySans;font-size:4vh;">
-                <i class="bi-person-fill"></i> Menu Gestión: Clientes
-             </h1>
-             <p><i> <strong>USUARIO: G-124 - PEREZ, LAURA</strong></i></p>
-             <hr>
-
-            <div class="accordion" id="accordion-gestion">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="ac-clientes">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" style="font-size:2vh;"
-                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    <strong> <i class="bi-person"></i>  Clientes</strong>
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                  aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-                    <a th:href="@{/gestion/clientes/crear}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi-person-plus"></i> Añadir nuevo
-                      cliente</a>
-                      <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-person-lines-fill"></i> Listar Clientes</a>
-                  </div>
-            
-                </div>
-            
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="ac-autores">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panel-autor" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
-                   <strong> <i class="bi-person"></i>  Autores</strong>
-                  </button>
-                </h2>
-                <div id="panel-autor" class="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-                    <a th:href="@{/gestion/clientes/crear}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi-person-plus"></i> Añadir nuevo
-                      autor</a>
-                      <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-person-lines-fill"></i> Listar Autores</a>
-            
-                  </div>
-            
-                </div>
-            
-              </div>
-            
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="ac-editorial">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panel-editorial" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
-                   <strong> <i class="bi bi-book-half"></i>  Editorial</strong>
-                  </button>
-                </h2>
-                <div id="panel-editorial" class="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-                    <a th:href="@{/gestion/clientes/crear}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi-plus-circle-fill"></i> Añadir nueva editorial</a>
-                      <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-list-check"></i> Listar Editoriales</a>
-            
-                  </div>
-            
-                </div>
-            
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="ac-autores">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panel-libro" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
-                   <strong> <i class="bi-book"></i>  Libros</strong>
-                  </button>
-                </h2>
-                <div id="panel-libro" class="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-                    <a th:href="@{/gestion/clientes/crear}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-journal-plus"></i> Añadir nuevo
-                      Libro</a>
-                      <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-list-check"></i> Listar Libros</a>
-                      <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
-                      style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-search"></i> Buscar Libros</a>
-                  </div>
-            
-                </div>
-            
-              </div>
-
-
-            </div>
-             
-          </div>
+          <!--Acordeon de div-gestion-->
+          <div th:replace="static  ::  div-gestion"></div>
              
 
            <div class="col-12 col-sm-8">
-          
+            <div class="alert alert-danger" th:if="${#httpServletRequest.getParameter('error') != null}">
+              <div th:if="${#httpServletRequest.getParameter('error') == 'eliminar'}"><i class="bi bi-exclamation-triangle">Imposible eliminar cliente si el mismo posee prestamos.</i>  </div>
+              </div>
           
           
           
@@ -282,7 +140,8 @@
          
 
     </div>
-</div>   
+</div> 
+      </form>
         
 
 

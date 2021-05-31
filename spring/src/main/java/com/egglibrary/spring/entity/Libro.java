@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 public class Libro {
 
     @Id
-    private long isbn;   
+    private Long isbn;   
     private String titulo;
     private Integer anio;
     private Integer ejemplares;
@@ -21,14 +21,32 @@ public class Libro {
     @ManyToOne
     private Editorial editorial;
     
+    
     public Libro() {
     }
+    public Autor getAutor() {
+        return autor;
+    }
 
-    public long getIsbn() {
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public Editorial getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
+    }
+    
+    
+
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(long isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 

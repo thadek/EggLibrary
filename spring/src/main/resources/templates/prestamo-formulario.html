@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <!-- CSS de Bootstrap + ICONITOS >:X --> 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+     <link rel="stylesheet" href='../../../estilos.css'>
+     
+     <!--SELECTIZE Y JQUERY-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+     
+    <title>Libro - Libreria Egg</title>
+  </head>
+  <body id="gestion">
+
+
+   <!--Barra de Navegación importada desde navbar.html-->
+  <nav th:replace="navbar :: navbar"></nav>
+
+
+      <div class='main'>
+
+    <div class="m-3"  id="moduloGestion">
+      
+        <div class="container mt-5 main" style="border-radius: 20px;  font-family: ViceCitySans; font-style: italic; background-color:white;" >
+     <form class="row g-3 needs-validation" th:action="@{/gestion/prestamo/__${action}__}" th:object="${prestamo}" method="POST" id ="formulariogestion" novalidate>
+         <h1 th:text="${title}"></h1>
+     <div class="container">
+       
+      <div class="row g-2 needs-validation" id="formulario" novalidate >
+         
+        <div class="col-md-3">
+          <label for="id" class="form-label"> ID</label>
+          <input type="text" class="form-control" id="id"  th:field="*{id}" placeholder="Generación de ID automatica" th:readonly="${id == null || id != null }"  required>
+          <div class="valid-feedback">
+              OK
+          </div>
+      </div>
+
+      <div class="col-md-3">
+      
+        <label for="autor" class="form-label">Libros</label>
+        
+          <select  id="libros" multiple aria-label="libros" placeholder="Seleccione libros" th:field="*{libro}" required>
+            
+              <option th:each="libro : ${libro}" th:text="|${libro.titulo}|"
+                      th:value="${libro.isbn}"></option>
+          </select>
+          
+      </div>
+
+      <div class="col-md-3">
+
+        <label for="autor" class="form-label">Cliente</label>
+        
+          <select onchange="verificarPrestamos(value)" id="idcliente"  aria-label="cliente" placeholder="Seleccione cliente" th:field="*{cliente}" >
+            
+              <option th:each="cliente : ${clientes}" th:text="|${cliente.nombre} ${cliente.apellido}|"
+                      th:value="${cliente.documento}"></option>
+          </select>
+          
+          <i class ="bi bi-check2-circle" id="validador-ok">Validación ok!</i>
+          <p class="validador-falso" id="validador-falso"><i class="bi bi-exclamation-triangle-fill" id="validador-false"></i> Este cliente tiene el maximo de prestamos permitidos.</p></p>
+
+      </div>
+
+      <div class="col-md-4">
+        <label for="fecha" class="form-label">Fecha devolucion</label>
+        <input type="date" class="form-control" id="fechaprestamo" th:field="*{devolucion}" required>
+        <div class="valid-feedback">
+          OK
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col p-1 pt-4"><button class="btn btn-primary" type="submit" th:text="${action == 'guardar' ? 'Cargar prestamo' : 'Actualizar'}"></button></div>
+        
+      </div>
+      
+    
+         
+
+    </div>
+</div>   
+       </form> 
+
+        </div>
+      </div>
+      
+        
+
+
+
+
+     
+
+
+        </div>
+
+     
+
+
+      <!--Footer -->
+  <footer th:replace="navbar :: footer"></footer>
+
+      <script>
+        $(document).ready(function () {
+          $('#idcliente').selectize({
+            sortField: 'text',
+            
+          });
+
+          $('#libros').selectize({
+            sortField: 'text',
+            maxItems:3
+          })
+        });
+        </script>
+
+
+
+
+
+      <!--Validaciones de formulario-->
+<script>
+   $('#validador-ok').hide();
+    $('#validador-falso').hide();
+  function verificarPrestamos(documento){
+    console.log(documento);
+    
+    let url = `http://localhost:8080/api/validator/prestamos/prestados-by-dni/max/${documento}`;
+    fetch(url)
+    .then(reponse => reponse.json())
+    .then(datos =>{
+     console.log(datos.validator);
+
+       if(datos.validator){
+         $('#validador-ok').hide();
+         $('#validador-falso').show();             
+               
+       }else{
+        
+         $('#validador-falso').hide();
+         $('#validador-ok').show();
+       }
+     
+    })
+
+   
+    
+
+  }
+        //Verifico que el cliente no tenga 3 prestamos.
+     //   const selectElement = document.querySelector("select[id=idcliente]");      
+  
+   //     selectElement.addEventListener('change',(event)=>{ console.log(event.target.value);
+   //       verificarPrestamos(event.target.value)})
+
+</script>
+
+
+
+      <script>
+
+
+
+
+        (function () {
+        'use strict'
+      
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        let forms = document.querySelectorAll('.needs-validation')
+
+         
+
+       // Loop over them and prevent submission        
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {       
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()             
+              }        
+
+
+
+              form.classList.add('was-validated')
+            }, false)
+
+           
+          })
+
+          
+
+          
+      })() </script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  </body>
+</html>

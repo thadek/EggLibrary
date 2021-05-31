@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+
+
+    <div th:fragment="div-gestion" class="col-1 col-sm-4" id="div-gestion">
+        <h1 style="text-align:left; margin-top:1vh; color:rgb(9, 93, 250); font-family: ViceCitySans;font-size:4vh;">
+            <i class="bi-ui-checks" th:text="${title}"></i> 
+         </h1>
+         <p><i> <strong>USUARIO: G-124 - PEREZ, LAURA</strong></i></p>
+         <hr>
+
+        <div class="accordion" id="accordion-gestion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ac-clientes">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" style="font-size:2vh;"
+                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                <strong> <i class="bi-person"></i>  Clientes</strong>
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <a th:href="@{/gestion/clientes/crear}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi-person-plus"></i> Añadir nuevo
+                  cliente</a>
+                  <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-person-lines-fill"></i> Listar Clientes</a>
+              </div>
+        
+            </div>
+        
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ac-autores">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panel-autor" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
+               <strong> <i class="bi-person"></i>  Autores</strong>
+              </button>
+            </h2>
+            <div id="panel-autor" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <a th:href="@{/gestion/autor/crear}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi-person-plus"></i> Añadir nuevo
+                  autor</a>
+                  <a th:href="@{/gestion/autor/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-person-lines-fill"></i> Listar Autores</a>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ac-editorial">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panel-editorial" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
+               <strong> <i class="bi bi-book-half"></i>  Editorial</strong>
+              </button>
+            </h2>
+            <div id="panel-editorial" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <a th:href="@{/gestion/editorial/crear}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi-plus-circle-fill"></i> Añadir nueva editorial</a>
+                  <a th:href="@{/gestion/editorial/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-list-check"></i> Listar Editoriales</a>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ac-libros">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panel-libro" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
+               <strong> <i class="bi-book"></i>  Libros</strong>
+              </button>
+            </h2>
+            <div id="panel-libro" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <a th:href="@{/gestion/libro/crear}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-journal-plus"></i> Añadir nuevo
+                  Libro</a>
+                  <a th:href="@{/gestion/libro/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-list-check"></i> Listar Libros</a>
+                  <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-search"></i> Buscar Libros</a>
+              </div>
+        
+            </div>
+        
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ac-libros">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panel-prestamo" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne" style="font-size:2vh;">
+               <strong> <i class="bi bi-ui-checks"></i>  Prestamos</strong>
+              </button>
+            </h2>
+            <div id="panel-prestamo" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <a th:href="@{/gestion/prestamo/crear}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-journal-plus"></i> Cargar Prestamo</a>
+                  <a th:href="@{/gestion/prestamo/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-list-check"></i> Listar Prestamos</a>
+                  <a th:href="@{/gestion/clientes/}" class="btn btn-outline-primary"
+                  style="font-family:ViceCitySans; font-size:2vh; margin:auto;"><i class="bi bi-search"></i> Buscar Prestamos por cliente</a>
+              </div>
+        
+            </div>
+        
+          </div>
+
+        </div>
+         
+      </div>
+
+
+
+
+</body>
+
+
+</html>

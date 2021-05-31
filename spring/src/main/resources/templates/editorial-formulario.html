@@ -15,7 +15,6 @@
   <body id="gestion">
 
 
-   
     <!--Barra de Navegación importada desde navbar.html-->
   <nav th:replace="navbar :: navbar"></nav>
 
@@ -25,22 +24,24 @@
     <div class="m-3"  id="moduloGestion">
       
         <div class="container mt-5 main" style="border-radius: 20px;  font-family: ViceCitySans; font-style: italic; background-color:white;" >
-     <form class="row g-3 needs-validation" th:action="@{/gestion/clientes/__${action}__}" method="POST" id ="formulariogestion"novalidate>
+     <form class="row g-3 needs-validation" th:action="@{/gestion/editorial/__${action}__}" method="POST" id ="formulariogestion"novalidate>
          <h1 th:text="${title}"></h1>
      <div class="container">
        
       <div class="row g-2 needs-validation" id="formulario" novalidate >
-         
-      <div class="col-md-2">
-        <label for="documento" class="form-label"> DNI</label>
-        <input type="text" class="form-control" id="documento" placeholder="DNI" th:field="*{cliente.documento}" th:readonly="${cliente.documento != null}"  required>
-        <div class="valid-feedback">
-          OK
-        </div>
-      </div>
+
+          <div class="col-md-4">
+              <label for="id" class="form-label"> ID</label>
+              <input type="text" class="form-control" id="id"  th:field="*{editorial.id}" placeholder="Generación de ID automatica" th:readonly="${editorial.id == null || editorial.id != null }"  required>
+              <div class="valid-feedback">
+                  OK
+              </div>
+          </div>
+
+
       <div class="col-md-2">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" th:field="*{cliente.nombre}" class="form-control" id="nombre"  required>
+        <input type="text" th:field="*{editorial.nombre}" class="form-control" id="nombre"  required>
         <div class="valid-feedback">
           OK
         </div>
@@ -48,31 +49,11 @@
           Nombre no puede ser vacío.
         </div>
       </div>
-      <div class="col-md-2">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" th:field="*{cliente.apellido}" required>
-        <div class="valid-feedback">
-          OK
-        </div>
 
-      </div>
-      <div class="col-md-4">
-        <label for="domicilio" class="form-label">Domicilio</label>
-        <input type="text" class="form-control" id="domicilio" th:field="*{cliente.domicilio}" required>
-        <div class="valid-feedback">
-          OK
-        </div>
-      </div>
-      <div class="col-md-2">
-        <label for="validationCustom01" class="form-label">Telefono</label>
-        <input type="text" class="form-control" id="telefono" th:field="*{cliente.telefono}" required>
-        <div class="valid-feedback">
-          OK
-        </div>
       </div>
 
       <div class="row">
-        <div class="col p-1 pt-4"><button class="btn btn-primary" type="submit" th:text="${action == 'guardar' ? 'Crear cliente' : 'Actualizar'}"></button></div>
+        <div class="col p-1 pt-4"><button class="btn btn-primary" type="submit" th:text="${action == 'guardar' ? 'Crear editorial' : 'Actualizar'}"></button></div>
         
       </div>
       
@@ -99,7 +80,8 @@
      
 
 
-      <!--Footer -->
+      
+       <!--Footer -->
   <footer th:replace="navbar :: footer"></footer>
 
 

@@ -10,54 +10,13 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
      <link rel="stylesheet" href='./estilos.css'>
      
-    <title>Gestión - Libreria Egg</title>
+    <title>Gestión - GN</title>
   </head>
-  <body style="background-image: url(/assets/img/aaron-burden-QJDzYT_K8Xg-unsplash.jpg);">
+  <body id="gestion">
 
 
-    <!--Barra de Navegación-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light m-3 p-1 " id="navbar-1">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">          
-            <img src="assets/img/logo.png" alt="logo" id="logo"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto" >
-              <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
-              
-              <a class="nav-link" th:href="login.html">Servicios</a>
-              <a class="nav-link" th:href="login.html">Sucursales</a>
-              <a class="nav-link" th:href="login.html">Buscar</a>
-              
-            </div>
-
-            <!-- Botoncito Cuenta -->
-            <div class="navbar navbar-nav ms-auto dropstart">
-              <a class="nav-link" href="@{gestion}"><button class="btn btn-outline-warning"><i class="bi-file-check"></i> Gestionar</button></a>
-              <button class="btn btn-outline-warning" id="sesion" data-bs-toggle="dropdown"><i class="bi-person"
-                  aria-label="CuentaEgg"></i> Cuenta Egg </button> 
-              <div class="dropdown-menu dropleft" id="login-desp"> 
-                <div class="container p-3 m-3 "><h2>Cuenta Egg</h2> </div>
-                <form class="form-horizontal" method="post" accept-charset="UTF-8"></form>
-                <input class="form-control login" type="text" name="username" placeholder="Usuario"><br>
-                <input class="form-control login" type="password" name="password" placeholder="Password"><br>
-                <input class="btn btn-primary" type="button" value="Login" onclick=login();>
-                </form>
-              </div>
-            
-            </div>
-            
-            
-            
-            
-            
-            
-
-          </div>
-        </div>
-      </nav>
+  <!--Barra de Navegación importada desde navbar.html-->
+  <nav th:replace="navbar :: navbar"></nav>
 
 
       <div class='main'>
@@ -72,34 +31,29 @@
           <h2 style="padding:10px;">Menú Gestión</h2>
           <p id="usuarioactivo">USUARIO: G-124 - PEREZ, LAURA</p>
 
-<div class="row gx-2">
-  <div class="col">
-    <a href="/gestion/clientes" th:href="@{/gestion/clientes}" class="btn btn-outline-secondary mx-3"
-      style="  font-size:30px">
-      <i class="bi bi-person"> Prestamos</i>
-    </a>
-  </div>
 
-            <div class="d-grid gap-2 col-6 mx-2">
+ 
+<div class="grupobotones">
 
-            
-          <a href="/gestion/clientes" th:href="@{/gestion/clientes}"class="btn btn-outline-success mx-3" style="font-size:30px">
-            <i class="bi bi-person"></i> Cliente
-          </a>
+  <a th:href="@{/gestion/prestamo}" class="botoncito">
+    <i class="bi bi-person"> Prestamos</i>
+  </a>
+  <a th:href="@{/gestion/clientes}" class="botoncito">
+    <i class="bi bi-person"></i> Cliente
+  </a>
 
+ <a th:href="@{/gestion/autor}"class="botoncito" >
+    <i class="bi bi-person"></i> Autor</a>
+  <a th:href="@{/gestion/editorial}" class="botoncito" >
+    <i class="bi bi-book-half"></i> Editorial</a>
 
-          <a class="btn btn-outline-primary mx-3" style="  font-size:30px" >
-            <i class="bi bi-person"></i> Autor</a>
-            <a class="btn btn-outline-warning mx-3" style=" font-size:30px" >
-            <i class="bi bi-book-half"></i> Editorial</a>
-         
-            <a class="btn btn-outline-info mx-3" style=" font-size:30px">
-            <i class="bi bi-book"> Libro</i> </a>
-       
-          </div>
-          </div>
-          
-          </div>
+  <a th:href="@{/gestion/libro}" class="botoncito" >
+    <i class="bi bi-book"> Libro</i> </a>
+
+</div>
+</div>
+
+</div>
 
 
           
@@ -123,78 +77,11 @@
      
 
 
-       <!--Barra footer-->
-       <footer class="bg-dark text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-          <!-- Redes sociales -->
-          <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i class="bi bi-facebook"></i
-            ></a>
-      
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i class="bi bi-twitter"></i
-            ></a>
-      
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i class="bi bi-google"></i
-            ></a>
-      
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i class="bi bi-instagram"></i
-            ></a>
-      
-      
-           
-          </section>
-          <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-      
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2021 Egg Library
-        </div>
-        <!-- Copyright -->
-      </footer>
+       <!--Footer -->
+  <footer th:replace="navbar :: footer"></footer>
 
 
-      <!--Validaciones de formulario-->
-      <script>
-        (function () {
-        'use strict'
-      
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        let forms = document.querySelectorAll('.needs-validation')
-        
-        // Loop over them and prevent submission
-        
-        Array.prototype.slice.call(forms)
-          .forEach(function (form) {
-            //Hago validaciones
-            form.addEventListener('submit', function (event) {
-              if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-                
-              } 
-      
-              //Si se valida el formulario muestra linea cargando sin recargar la página (stopPropagation)
-              if (form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()            
-                makeProgress()             
-              }                                
-                             
-              form.classList.add('was-validated')
-            }, false)
-          })
-      })() </script>
+     
 
 
 

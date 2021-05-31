@@ -11,9 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository                                             //Objeto , Clave primaria en DB
 public interface ClienteRepository extends JpaRepository <Cliente, Long>{
     
-    @Query("SELECT c FROM Cliente c WHERE c.documento = :documento")
-    public List<Cliente>buscarClienteporDocumento(@Param("documento") Long documento);
-    
     @Modifying
     @Query("UPDATE Cliente c SET c.nombre = :nombre, c.apellido = :apellido, c.domicilio = :domicilio, c.telefono = :telefono WHERE c.documento = :documento")
     void modificar(@Param("documento") Long documento, @Param("nombre") String nombre, @Param("apellido") String apellido, @Param("domicilio") String domicilio, @Param("telefono") String telefono);

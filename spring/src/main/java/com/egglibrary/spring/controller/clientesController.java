@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/gestion/clientes")
 public class clientesController{
 
-    
+
     @Autowired
     private ClienteService clienteService = new ClienteService();
     
@@ -28,6 +28,7 @@ public class clientesController{
     public ModelAndView mostrarTodos() {
         ModelAndView mav = new ModelAndView("cliente-lista");
         mav.addObject("cliente", clienteService.buscarTodos());
+        mav.addObject("title", "Menu Gestión: Cliente");
         return mav;
     }
 
@@ -48,7 +49,11 @@ public class clientesController{
     
     @PostMapping ("/eliminar/{documento}")
     public RedirectView eliminar(@PathVariable Long documento){
-        clienteService.eliminar(documento);
+        try{
+            clienteService.eliminar(documento);
+        }catch(Exception e){
+            return new RedirectView("/gestion/clientes?error=eliminar");
+        }    
         return new RedirectView("/gestion/clientes");
     }
       
