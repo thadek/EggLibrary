@@ -1,6 +1,6 @@
 package com.egglibrary.spring.controller;
 
-import com.egglibrary.spring.entity.Editorial;
+import com.egglibrary.spring.entity.Autor;
 import com.egglibrary.spring.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class autorController {
     @GetMapping("/crear")
     public ModelAndView crearAutor() {
         ModelAndView mav = new ModelAndView("autor-formulario");
-        mav.addObject("autor", new Editorial());
+        mav.addObject("autor", new Autor());
         mav.addObject("title", "Crear Autor");
         mav.addObject("action", "guardar");
         return mav;
@@ -44,7 +44,13 @@ public class autorController {
 
     @PostMapping("/eliminar/{id}")
     public RedirectView eliminar(@PathVariable String id){
-        autorService.eliminar(id);
+        
+        try{
+            autorService.eliminar(id);
+        }catch(Exception e){
+            return new RedirectView("/gestion/autor?error=eliminar");
+        }
+        
         return new RedirectView("/gestion/autor");
     }
 

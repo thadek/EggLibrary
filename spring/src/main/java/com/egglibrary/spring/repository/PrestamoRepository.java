@@ -15,8 +15,8 @@ import org.springframework.stereotype.Repository;
 public interface PrestamoRepository  extends JpaRepository<Prestamo, String>{
     
     @Modifying
-    @Query("UPDATE Prestamo p SET p.devolucion = :devolucion , p.libro = :libros WHERE p.id = :id")
-    void modificar(@Param("id") String id, @Param("devolucion") Date devolucion, @Param("libros")List<Libro> libros);
+    @Query("UPDATE Prestamo p SET p.devolucion = :devolucion , p.libro = :libro WHERE p.id = :id")
+    void modificar(@Param("id") String id, @Param("devolucion") Date devolucion, @Param("libro")List<Libro> libro);
     
     
     @Query("SELECT p from Prestamo p WHERE p.cliente.documento = :documento")

@@ -162,7 +162,23 @@ body[id="gestion"]{
       
   }
 
-  
+  #register{
+    font-family:ViceCitySans;
+    background:white;
+    background-blend-mode: darken;
+    border-radius: 90px;
+    padding-left:5%;
+    padding-right: 5%;
+    padding-bottom: 10%;
+    padding-top:5%;
+    justify-content: center;
+    opacity: 89%;
+    border-spacing: 10%;
+    padding-left:5%;
+    padding-top:5%;
+    padding-bottom: 10%;
+    
+}
 
 
 #libro-a{
@@ -216,9 +232,12 @@ body[id="gestion"]{
 
 #login-desp{
     position: absolute;
-    padding:20%;
+    padding:30%;
+    border-radius:20px;
+    
     
 }
+
 
 #slide-3{
     font-family: ViceCitySans;

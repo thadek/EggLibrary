@@ -28,9 +28,10 @@
   
              <div class="col-12 col-sm-8">
             
-              <div class="alert alert-sucess" th:if="${#httpServletRequest.getParameter('edit') != null}">
-                <div th:if="${#httpServletRequest.getParameter('edit') == 'sucess'}"><i class="bi bi-exclamation-triangle">Prestamo editado correctamente.</i>  </div>
-                </div>
+              <div th:if="${#httpServletRequest.getParameter('edit') != null}">
+                <div  class="alert alert-success" th:if="${#httpServletRequest.getParameter('edit') == 'sucess'}"><i class="bi bi-check-circle-fill">Prestamo editado correctamente.</i>  </div>
+                <div  class="alert alert-danger" th:if="${#httpServletRequest.getParameter('edit') == 'error'}"><i class="bi bi-exclamation-triangle">Ocurrió un error al editar el préstamo.</i>  </div>
+              </div>
             
              
             

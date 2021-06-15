@@ -11,7 +11,7 @@
         <h1 style="text-align:left; margin-top:1vh; color:rgb(9, 93, 250); font-family: ViceCitySans;font-size:4vh;">
             <i class="bi-ui-checks" th:text="${title}"></i> 
          </h1>
-         <p><i> <strong>USUARIO: G-124 - PEREZ, LAURA</strong></i></p>
+         <p><i> <strong th:text="${'USUARIO: A-00'+session.usuariosession.id + ' - ' +session.usuariosession.cliente.apellido +','+ session.usuariosession.cliente.nombre}"></strong></i></p>
          <hr>
 
         <div class="accordion" id="accordion-gestion">

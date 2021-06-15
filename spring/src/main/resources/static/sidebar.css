@@ -74,10 +74,10 @@ body{
   position: relative;
   height: 50px;
   width: 100%;
-  margin: 0 5px;
+  margin: 5px 5px;
   list-style: none;
   line-height: 50px;
-  margin: 5px 0;
+
 }
 .sidebar ul li .tooltip{
   position: absolute;
@@ -233,7 +233,7 @@ body{
   width: calc(100% - 78px);
   left: 78px;
   background: #E4E9F7;
-  box:shadow: 0 5px 10px rgba(0,0,0,0.2px);
+ 
   transition: all 0.5s ease;
 }
 .sidebar.active ~ .home_content{

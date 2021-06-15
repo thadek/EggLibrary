@@ -1,5 +1,6 @@
 package com.egglibrary.spring.entity;
 
+import com.egglibrary.spring.enums.Estado;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,8 @@ public class Cliente {
     private String apellido;
     private String domicilio;
     private String telefono;
+    private Double multas;
+    private Estado estadoCliente;
 
     //Relaciones - Prestamos
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
@@ -63,6 +66,24 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public Double getMultas() {
+        return multas;
+    }
+
+    public void setMultas(Double multas) {
+        this.multas = multas;
+    }
+
+    public Estado getEstadoCliente() {
+        return estadoCliente;
+    }
+
+    public void setEstadoCliente(Estado estadoCliente) {
+        this.estadoCliente = estadoCliente;
+    }
+    
+    
     
     
 }

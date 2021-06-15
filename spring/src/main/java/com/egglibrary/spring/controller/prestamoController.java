@@ -73,7 +73,10 @@ public class prestamoController {
     
     @PostMapping("/modificar")
     public RedirectView modificar(@RequestParam("id") String id,@RequestParam @DateTimeFormat (pattern="yyyy-MM-dd") Date devolucion, @RequestParam("libro") List<Libro> libro){
-        ps.editarPrestamo(id, devolucion, libro);
+        try{ps.editarPrestamo(id, devolucion, libro);}
+        catch(Exception e){
+            return new RedirectView("/gestion/prestamo?edit=error");
+        }
         return new RedirectView("/gestion/prestamo?edit=sucess");
     }
     

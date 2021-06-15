@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
 </head>
@@ -22,16 +22,19 @@
 
       <!-- Botoncito Cuenta -->
       <div class="navbar navbar-nav ms-auto dropstart">
-        <a class="nav-link" th:href="@{/gestion}"><button class="btn btn-outline-light"><i class="bi-file-check"></i> Gestionar</button></a>
-        <button class="btn btn-outline-light" id="sesion" data-bs-toggle="dropdown"><i class="bi-person"
-                                                                                         aria-label="account"></i> </button>
+        <a class="nav-link" sec:authorize="hasRole('ROLE_USER_ADMIN')" th:href="@{/gestion}"><button class="btn btn-outline-light"><i class="bi-file-check"></i> Gestionar</button></a>
+        <button class="btn btn-outline-light" id="sesion" data-bs-toggle="dropdown"><i class="bi-person" th:if='${session.usuariosession==null}'aria-label="account"></i><i class= "bi-person" th:if='${session.usuariosession!=null}' th:text="${'@'+session.usuariosession.username}"></i> </button>
         <div class="dropdown-menu dropleft" id="login-desp">
-          <div class="container p-3 m-3 "><h2>Cuenta gn</h2> </div>
-          <form class="form-horizontal" method="post" accept-charset="UTF-8"></form>
+          <div class="container-flex"> <div th:if='${session.usuariosession!=null}'><h4 th:text="${'Bienvenido  @ '+session.usuariosession.username}"></h4><a class="btn btn-primary" th:href="@{/logout}">Cerrar Sesión</a>
+          </div> </div>
+          <form class="form-horizontal" th:if='${session.usuariosession==null}' th:action="@{/perform_login}" method="post" accept-charset="UTF-8" id="logon2">
+          <label><img th:src="@{/assets/img/logo2.png}" style=" margin:10px; margin-right:50px;"> <H2>Iniciar Sesión</h2></label>
           <input class="form-control login" type="text" name="username" placeholder="Usuario"><br>
           <input class="form-control login" type="password" name="password" placeholder="Password"><br>
-          <input class="btn btn-primary" type="button" value="Login" onclick=login();>
+          <button class="btn btn-primary" type="submit">Conectar</button>
           </form>
+
+          
         </div>
 
       </div>

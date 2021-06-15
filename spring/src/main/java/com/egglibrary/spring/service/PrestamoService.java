@@ -8,6 +8,7 @@ import com.egglibrary.spring.errores.ErrorService;
 import com.egglibrary.spring.repository.PrestamoRepository;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,16 @@ public class PrestamoService {
     private PrestamoRepository pr;
     @Autowired
     private ClienteService cs;
+    
+    
+    public boolean stocklleno(Libro l){
+        
+        if(l.getPrestados()==l.getEjemplares()){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     //Cargar prestamo
@@ -36,7 +47,7 @@ public class PrestamoService {
               p.setCliente(cs.buscarPorDni(dniCliente));
               //Verificacion de Stock de libros
                for (Libro libro : libros) {               
-                   if(!(libro.getPrestados()==libro.getEjemplares())){
+                   if(!stocklleno(libro)){
                        libro.setPrestados(libro.getPrestados()+1);
                        //se persiste solo a la DB
                    }else{
@@ -76,8 +87,33 @@ public class PrestamoService {
     
     
     @Transactional
-    public void editarPrestamo(String idPrestamo, Date devolucion, List<Libro> libros){
-        pr.modificar(idPrestamo, devolucion, libros);
+    public void editarPrestamo(String idPrestamo, Date devolucion, List<Libro> libros) throws ErrorService{
+        
+        Optional<Prestamo> prestamoBuscado = pr.findById(idPrestamo);
+        
+        if(prestamoBuscado.isPresent()){
+            Prestamo p = prestamoBuscado.get();
+            p.setDevolucion(devolucion);
+            for (Libro libro : p.getLibro()) {
+                libro.setPrestados(libro.getPrestados()-1);
+            }
+            for (Libro libro : libros) {
+                if(!stocklleno(libro)){
+                    libro.setPrestados(libro.getPrestados()+1);
+                }else{
+                    throw new ErrorService("NO HAY STOCK DEL LIBRO "+ libro.getTitulo());
+                }           
+            }
+            
+            p.setLibro(libros);        
+            pr.save(p);
+        }else{
+            throw new ErrorService("No existe ese id prestamo.");
+        }
+        
+        
+        //Deprecado
+        //pr.modificar(idPrestamo, devolucion, libros);
      
     }
     
@@ -91,12 +127,31 @@ public class PrestamoService {
         }
         //Si fecha actual > fecha devolucion fijada = multa
         if(p.getDevolucion().after(fechaActual)){
-            p.setMulta(100.25);
+            p.setMulta(calcularmulta(p.getDevolucion(),fechaActual));
         }
         p.setDevolucion(fechaActual);
         //Flag devuelto
         p.setDevuelto(true);
         pr.devolver(idPrestamo);          
+    }
+    
+    public Double calcularmulta(Date devEstimada, Date devReal){
+        double multa=0;
+        if(devEstimada.after(devReal)){
+            
+            long milisecondsByDay = 86400000;
+            
+            long diferencia = ((devReal.getTime()-devEstimada.getTime())/milisecondsByDay);
+            
+            if(diferencia<5){
+                multa=100;
+            }else if(diferencia>5 && diferencia<15){
+                multa=500;
+            }else{
+                multa=diferencia*125;
+            }      
+        }
+        return multa;
     }
 
     @Transactional(readOnly = true)
@@ -111,6 +166,7 @@ public class PrestamoService {
     
     @Transactional
     public void eliminar(String id){
+        devolver(id);
         pr.deleteById(id);
     }
             

@@ -29,7 +29,7 @@
 
 
           <h2 style="padding:10px;">Menú Gestión</h2>
-          <p id="usuarioactivo">USUARIO: G-124 - PEREZ, LAURA</p>
+          <p id="usuarioactivo" th:text="${'USUARIO: A-00'+session.usuariosession.id + ' - ' +session.usuariosession.cliente.nombre}"></p>
 
 
  

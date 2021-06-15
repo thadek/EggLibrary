@@ -48,12 +48,14 @@
       
         <label for="autor" class="form-label">Libros</label>
         
-          <select  id="libros" multiple aria-label="libros" placeholder="Seleccione libros" th:field="*{libro}" required>
+          <select  id="libros" class="needs-validation" multiple aria-label="libros" placeholder="Seleccione libros" th:field="*{libro}" required>
             
               <option th:each="libro : ${libro}" th:text="|${libro.titulo}|"
                       th:value="${libro.isbn}"></option>
           </select>
-          
+          <div class="invalid-feedback">
+           Libros no puede ser vacío.
+        </div>
       </div>
 
       <div class="col-md-3">
